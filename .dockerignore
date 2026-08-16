@@ -1,0 +1,8 @@
+# Что не должно попадать внутрь образа
+.idea/
+.git/
+.DS_Store
+.env
+vendor/
+Dockerfile
+.dockerignore
