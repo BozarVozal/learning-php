@@ -2,10 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Database;
-use App\VisitRepository;
+use App\DatabaseConfig;
 
-$repo = new VisitRepository(Database::connect());
-foreach ($repo->latest(3) as $visit) {
-    echo '#', $visit->id, ' — ', $visit->formattedDate(), "\n";
-}
+$config = new DatabaseConfig('db', '5432', 'app', 'app', 'secret');
+echo $config->dsn(), "\n";

@@ -1,6 +1,5 @@
 <?php
 
-// Одна строка вместо ручных require для каждого класса
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Database;
@@ -8,9 +7,18 @@ use App\Visit;
 use App\VisitRepository;
 use Carbon\Carbon;
 use App\Greeter;
+use App\DatabaseConfig;
 
 try {
-    $pdo = Database::connect();
+    $config = new DatabaseConfig(
+        getenv('DB_HOST'),
+        (int) getenv('DB_PORT'),
+        getenv('DB_NAME'),
+        getenv('DB_USER'),
+        getenv('DB_PASSWORD')
+    );
+
+    $pdo = (new Database($config)->connect());
 } catch (PDOException $e) {
     http_response_code(500);
     echo '<h1>Не удалось подключиться к базе</h1>';
