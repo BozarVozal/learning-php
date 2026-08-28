@@ -5,7 +5,7 @@ namespace App;
 use PDO;
 use DateTimeImmutable;
 
-class VisitRepository
+class VisitRepository implements VisitRepositoryInterface
 {
     public function __construct(private PDO $pdo)
     {
